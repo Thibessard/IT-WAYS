@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grégory Thibessard — Praticien narratif · Mentor de dirigeants</title>
+<meta name="description" content="Qui détient les droits d'auteur de votre vie ? Accompagnement narratif pour dirigeants — Lille / Paris / Visio">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bleu: #1a2e4a;
+    --gris: #666666;
+    --gris-clair: #f8f8f6;
+    --bordure: #e0e0e0;
+    --blanc: #ffffff;
+    --text: #1a2e4a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--text);
+    background: var(--blanc);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 0.5px solid var(--bordure);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    color: var(--bleu);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gris);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--bleu); }
+
+  .nav-cta {
+    background: var(--bleu);
+    color: var(--blanc);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 24px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 96px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 24px;
+    color: var(--bleu);
+  }
+
+  .hero-title em { font-style: italic; }
+
+  .hero-tagline {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--gris);
+    margin-bottom: 36px;
+    max-width: 440px;
+    font-weight: 300;
+  }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--bleu);
+    color: var(--blanc);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 26px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-secondary {
+    font-size: 13px;
+    color: var(--gris);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: color 0.2s;
+  }
+
+  .btn-secondary:hover { color: var(--bleu); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--gris-clair);
+    border-radius: 16px;
+    padding: 24px;
+    border: 0.5px solid var(--bordure);
+    position: sticky;
+    top: 88px;
+  }
+
+  .hero-card-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--bleu);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: var(--blanc);
+    margin-bottom: 14px;
+  }
+
+  .hero-card-name {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 3px;
+    color: var(--bleu);
+  }
+
+  .hero-card-role {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+
+  .hero-card-stats {
+    border-top: 0.5px solid var(--bordure);
+    padding-top: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--bleu);
+  }
+
+  .stat-label {
+    font-size: 11px;
+    color: var(--gris);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+
+  /* DIVIDER */
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+    border: none;
+    border-top: 0.5px solid var(--bordure);
+  }
+
+  /* SECTION — APPROCHE */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 40px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 18px;
+    color: var(--bleu);
+  }
+
+  .section-title em { font-style: italic; }
+
+  .section-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--gris);
+    max-width: 560px;
+    font-weight: 300;
+  }
+
+  /* QUOTE */
+  .quote-block {
+    border-left: 2px solid var(--bleu);
+    padding: 14px 0 14px 24px;
+    margin: 32px 0;
+  }
+
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 21px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bleu);
+  }
+
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 32px;
+    max-width: 640px;
+  }
+
+  .card {
+    background: var(--blanc);
+    border: 0.5px solid var(--bordure);
+    border-radius: 12px;
+    padding: 20px;
+  }
+
+  .card-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background: var(--gris-clair);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 14px;
+    color: var(--bleu);
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--bleu);
+  }
+
+  .card-body {
+    font-size: 12px;
+    line-height: 1.65;
+    color: var(--gris);
+    font-weight: 300;
+  }
+
+  /* POURQUOI MOI — deux colonnes */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 28px;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--bordure);
+    min-width: 28px;
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .step-title {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--bleu);
+  }
+
+  .step-body {
+    font-size: 13px;
+    color: var(--gris);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .compostelle-block {
+    background: var(--gris-clair);
+    border-radius: 14px;
+    padding: 28px;
+    border: 0.5px solid var(--bordure);
+  }
+
+  .compostelle-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 400;
+    color: var(--bleu);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .compostelle-unit {
+    font-size: 12px;
+    color: var(--gris);
+    margin-bottom: 20px;
+    letter-spacing: 0.04em;
+  }
+
+  .compostelle-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--bleu);
+    margin-bottom: 16px;
+  }
+
+  .compostelle-body {
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--gris);
+    font-weight: 300;
+  }
+
+  /* POUR QUI */
+  .portraits {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+  }
+
+  .portrait-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 32px 0;
+    border-top: 0.5px solid var(--bordure);
+    align-items: start;
+  }
+
+  .portrait-item:last-child {
+    border-bottom: 0.5px solid var(--bordure);
+  }
+
+  .portrait-meta {}
+
+  .portrait-tag {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gris);
+    margin-bottom: 8px;
+  }
+
+  .portrait-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.3;
+    color: var(--bleu);
+  }
+
+  .portrait-phrase {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--bleu);
+    margin-bottom: 12px;
+    padding-left: 16px;
+    border-left: 2px solid var(--bleu);
+  }
+
+  .portrait-body {
+    font-size: 13px;
+    line-height: 1.75;
+    color: var(--gris);
+    font-weight: 300;
+  }
+
+  /* FORMATS */
+  .formats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .format-card {
+    border: 0.5px solid var(--bordure);
+    border-radius: 14px;
+    padding: 22px 24px;
+    background: var(--blanc);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+  }
+
+  .format-card.featured {
+    border: 1.5px solid var(--bleu);
+  }
+
+  .format-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--gris-clair);
+    color: var(--gris);
+    margin-bottom: 12px;
+    width: fit-content;
+  }
+
+  .format-card.featured .format-badge {
+    background: var(--bleu);
+    color: var(--blanc);
+  }
+
+  .format-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    color: var(--bleu);
+  }
+
+  .format-detail {
+    font-size: 12px;
+    color: var(--gris);
+    line-height: 1.55;
+    font-weight: 300;
+    flex: 1;
+    margin-bottom: 14px;
+  }
+
+  .format-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--bleu);
+    line-height: 1;
+  }
+
+  .format-price-unit {
+    font-size: 11px;
+    color: var(--gris);
+    margin-top: 2px;
+  }
+
+  /* CONFÉRENCES */
+  .conf-section {
+    background: var(--gris-clair);
+    padding: 56px 0;
+    margin-top: 0;
+  }
+
+  .conf-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .conf-logos {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .conf-logo {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 24px;
+    border: 0.5px solid var(--bordure);
+    color: var(--gris);
+    background: var(--blanc);
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.25;
+    margin-bottom: 16px;
+    color: var(--bleu);
+  }
+
+  .cta-title em { font-style: italic; }
+
+  .cta-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--gris);
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .cta-sub {
+    font-size: 12px;
+    color: var(--gris);
+    margin-top: 12px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 0.5px solid var(--bordure);
+    padding: 24px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--gris);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  footer a {
+    color: var(--gris);
+    text-decoration: none;
+  }
+
+  footer a:hover { color: var(--bleu); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-content > * {
+    animation: fadeUp 0.6s ease forwards;
+    opacity: 0;
+  }
+
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 48px 20px; }
+    .hero-card { display: none; }
+    .hero-title { font-size: 36px; }
+    .section { padding: 48px 20px; }
+    .two-col { grid-template-columns: 1fr; gap: 32px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .portrait-item { grid-template-columns: 1fr; gap: 16px; }
+    .formats-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; text-align: center; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Grégory Thibessard</a>
+  <ul class="nav-links">
+    <li><a href="#approche">L'approche</a></li>
+    <li><a href="#pourquoi">Pourquoi moi</a></li>
+    <li><a href="#pourqui">Pour qui</a></li>
+    <li><a href="#formats">Formats & tarifs</a></li>
+  </ul>
+  <a href="https://calendly.com" class="nav-cta">Prendre RDV</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Praticien narratif · Mentor de dirigeants</div>
+    <h1 class="hero-title">Qui détient les droits<br>d'auteur de <em>votre vie</em> ?</h1>
+    <p class="hero-tagline">Vous dirigez. Vous décidez. Et pourtant, quelque chose s'est figé — dans votre récit de vous-même, dans celui de votre entreprise. L'accompagnement narratif vous aide à reprendre les droits.</p>
+    <div class="hero-btns">
+      <a href="https://calendly.com" class="btn-primary">Séance découverte gratuite</a>
+      <a href="#approche" class="btn-secondary">En savoir plus →</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <div class="hero-card-avatar">GT</div>
+    <div class="hero-card-name">Grégory Thibessard</div>
+    <div class="hero-card-role">Directeur Général · Praticien narratif<br>Co-auteur · Conférencier</div>
+    <div class="hero-card-stats">
+      <div>
+        <div class="stat-num">30+</div>
+        <div class="stat-label">ans en direction d'entreprise</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">places maximum en parallèle</div>
+      </div>
+      <div>
+        <div class="stat-num">1600</div>
+        <div class="stat-label">km à pied — Le Puy → Fisterra</div>
+      </div>
+      <div>
+        <div class="stat-num">9</div>
+        <div class="stat-label">ans d'accompagnement Hodefi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- L'APPROCHE -->
+<section class="section" id="approche">
+  <div class="section-label">L'approche</div>
+  <h2 class="section-title">On ne répare pas les individus.<br><em>On répare leur histoire.</em></h2>
+  <p class="section-body">La pratique narrative ne s'intéresse pas à ce qui ne va pas chez vous. Elle s'intéresse aux récits que vous portez sur vous-même — et à ce qu'ils vous permettent, ou vous empêchent, de faire.</p>
+  <div class="quote-block">
+    <div class="quote-text">"Faire des gros problèmes des petits, et des petites personnes des plus grandes."<br><span style="font-family:'Inter',sans-serif;font-size:13px;font-style:normal;font-weight:400;color:var(--gris);display:block;margin-top:8px">— Dina Scherrer, praticienne narrative, ma formatrice</span></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-icon">◎</div>
+      <div class="card-title">Externaliser le problème</div>
+      <div class="card-body">Séparer le problème de la personne pour libérer la capacité d'agir et réduire culpabilité et honte.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">✦</div>
+      <div class="card-title">Moments scintillants</div>
+      <div class="card-body">Retrouver les exceptions au problème — preuves enfouies de vos compétences et résistances.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">◈</div>
+      <div class="card-title">Identité préférée</div>
+      <div class="card-body">Passer d'un récit "mince" à une description riche, alignée avec ce qui vous est précieux.</div>
+    </div>
+    <div class="card">
+      <div class="card-icon">▲</div>
+      <div class="card-title">Se redignifier</div>
+      <div class="card-body">Redevenir auteur de sa vie. Reprendre les droits sur son histoire.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- POURQUOI MOI -->
+<section class="section" id="pourquoi">
+  <div class="two-col">
+    <div>
+      <div class="section-label">Pourquoi moi</div>
+      <h2 class="section-title">Je suis <em>devenu</em> dirigeant.<br>J'ai marché pour me retrouver.<br>J'ai compris en chemin.</h2>
+      <p class="section-body">Je ne suis pas venu à l'accompagnement par vocation théorique. J'y suis venu parce que j'ai traversé ce que traversent les dirigeants que j'accompagne — et parce qu'un chemin de 1600 km m'a contraint à regarder ce que j'avais évité de voir.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <div class="step-title">L'expérience de terrain</div>
+            <div class="step-body">DG pendant 11 ans (6M → 11,5M€, rentable 10 ans consécutifs). 60 collaborateurs. Croissance externe. Cession.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <div class="step-title">La rupture de Compostelle</div>
+            <div class="step-body">1600 km en 54 jours. Le basculement de "Avoir, Faire, Être" vers "Être, Faire, Avoir".</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <div class="step-title">La pratique narrative</div>
+            <div class="step-body">Un outil pour accompagner les autres dans ce même mouvement — sans 54 jours de marche.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="compostelle-block">
+      <div class="compostelle-num">1600</div>
+      <div class="compostelle-unit">km · Le Puy-en-Velay → Cap Fisterra · 54 jours</div>
+      <div class="compostelle-quote">"J'avais construit ma vie dans l'ordre Avoir, Faire, Être. Ce chemin m'a imposé l'ordre inverse."</div>
+      <div class="compostelle-body">Ce renversement n'est pas une philosophie. C'est une expérience physique, lente, irréversible. C'est depuis elle que j'accompagne.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- POUR QUI -->
+<section class="section" id="pourqui">
+  <div class="section-label">Pour qui</div>
+  <h2 class="section-title">Trois moments où<br><em>le récit ne suffit plus</em></h2>
+  <div class="portraits">
+    <div class="portrait-item">
+      <div class="portrait-meta">
+        <div class="portrait-tag">01 · Fondateur · Start-up</div>
+        <div class="portrait-title">Grandir<br>sans se perdre</div>
+      </div>
+      <div>
+        <div class="portrait-phrase">"Dois-je rester dans l'artisanat ou basculer vers l'industriel — au risque de me perdre ?"</div>
+        <div class="portrait-body">La levée de fonds n'est pas qu'une question financière. C'est une question d'identité. Qui serez-vous si vous franchissez ce cap ? J'accompagne aussi les situations entre co-fondateurs, quand les récits qui ont uni deux personnes au démarrage commencent à diverger.</div>
+      </div>
+    </div>
+    <div class="portrait-item">
+      <div class="portrait-meta">
+        <div class="portrait-tag">02 · Dirigeant · PME</div>
+        <div class="portrait-title">Après quoi<br>je cours ? <em>Seul ?</em></div>
+      </div>
+      <div>
+        <div class="portrait-phrase">"J'ai le sentiment de tirer la charrue seul dans le sillon. Mais au fait, pourquoi, déjà ?"</div>
+        <div class="portrait-body">Ce n'est pas de la fatigue. C'est quelque chose de plus profond : une perte de sens en chemin, progressive, souvent invisible de l'extérieur. Et comme personne autour de vous ne peut se permettre de vous voir douter, vous continuez à tirer.</div>
+      </div>
+    </div>
+    <div class="portrait-item">
+      <div class="portrait-meta">
+        <div class="portrait-tag">03 · Dirigeant · Grande org.</div>
+        <div class="portrait-title">Au sommet,<br>seul avec son histoire</div>
+      </div>
+      <div>
+        <div class="portrait-phrase">"J'ai gravi tous les échelons pour arriver là. Et maintenant que j'y suis, je ne sais plus très bien qui je suis censé être."</div>
+        <div class="portrait-body">Vous avez suivi le programme. Et à un moment, vous réalisez que ce programme était écrit par d'autres. Ce que je propose, c'est un espace où la question "qui suis-je vraiment, là, maintenant ?" peut être posée sans conséquences.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FORMATS -->
+<section class="section" id="formats">
+  <div class="section-label">Formats & tarifs</div>
+  <h2 class="section-title">Quatre places.<br><em>Une présence réelle.</em></h2>
+  <p class="section-body">Je travaille avec quatre dirigeants maximum en parallèle. Quand les quatre places sont occupées, je n'en prends pas d'autres.</p>
+  <div class="formats-grid">
+    <div class="format-card">
+      <div>
+        <div class="format-badge">Découverte</div>
+        <div class="format-name">Séance exploratoire</div>
+        <div class="format-detail">30 min · Visio · Sans engagement d'aucun côté. Pour voir si l'approche vous correspond.</div>
+      </div>
+      <div>
+        <div class="format-price" style="font-style:italic">Gratuit</div>
+      </div>
+    </div>
+    <div class="format-card">
+      <div>
+        <div class="format-badge">Séance</div>
+        <div class="format-name">Séance individuelle</div>
+        <div class="format-detail">90 min · Visio ou présentiel Lille · Compte-rendu sous 24h · Pré-paiement en ligne.</div>
+      </div>
+      <div>
+        <div class="format-price">400€ <span style="font-family:'Inter';font-size:13px;font-weight:300">HT</span></div>
+        <div class="format-price-unit">la séance</div>
+      </div>
+    </div>
+    <div class="format-card featured">
+      <div>
+        <div class="format-badge">Recommandé</div>
+        <div class="format-name">Accompagnement mensuel</div>
+        <div class="format-detail">2 séances de 90 min · Disponibilité asynchrone · Visio ou présentiel Lille · Résiliable à tout moment.</div>
+      </div>
+      <div>
+        <div class="format-price">1 500€ <span style="font-family:'Inter';font-size:13px;font-weight:300">HT</span></div>
+        <div class="format-price-unit">par mois</div>
+      </div>
+    </div>
+    <div class="format-card">
+      <div>
+        <div class="format-badge">Collectif</div>
+        <div class="format-name">Séminaire équipe dirigeante</div>
+        <div class="format-detail">Journée complète · Présentiel · Conflits de sens, vision partagée, gouvernance.</div>
+      </div>
+      <div>
+        <div class="format-price" style="font-size:20px">Sur devis</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFÉRENCES -->
+<div class="conf-section">
+  <div class="conf-inner">
+    <div class="section-label">Conférences & interventions</div>
+    <p class="section-body">Innovation managériale, posture du dirigeant, entreprise apprenante — auprès d'organisations qui ont fait le choix de questionner leurs pratiques de leadership.</p>
+    <div class="conf-logos">
+      <span class="conf-logo">Canal+</span>
+      <span class="conf-logo">Icade</span>
+      <span class="conf-logo">Nexity</span>
+      <span class="conf-logo">Caisse d'Epargne</span>
+    </div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <h2 class="cta-title">Commencer par<br><em>une conversation</em></h2>
+  <p class="cta-body">30 minutes, sans engagement, pour voir si cette approche correspond à ce que vous traversez.</p>
+  <a href="https://calendly.com" class="btn-primary">Réserver la séance découverte</a>
+  <div class="cta-sub">Prise de RDV via Calendly · Visio ou présentiel Lille</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© Grégory Thibessard · itways.fr · 2025</span>
+  <span>
+    <a href="#">Mentions légales</a> ·
+    <a href="https://linkedin.com/in/gthibess/" target="_blank">LinkedIn</a> ·
+    <a href="#">Co-auteur "C'est quoi ton rêve ?"</a>
+  </span>
+</footer>
+
+</body>
+</html>
